@@ -2,6 +2,7 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,5 +32,4 @@ Route::get('/about', function () {
 Route::get('/home' ,[HomeController::class, 'index']);
 
 
-Route::post('question/store', [QuestionController::class, 'store'])
-		->name('question.store');
+Route::post('/question/store', 'App\Http\Controllers\QuestionController@store');
