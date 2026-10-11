@@ -31,5 +31,5 @@ Route::get('/about', function () {
 
 Route::get('/home' ,[HomeController::class, 'index']);
 
-
-Route::post('/question/store', 'App\Http\Controllers\QuestionController@store');
+Route::post('question/store', [QuestionController::class, 'store'])
+		->name('question.store');

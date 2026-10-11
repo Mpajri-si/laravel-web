@@ -50,6 +50,13 @@
     </style>
 </head>
 <body>
+    
+    <h3>Respon Pertanyaan</h3>
+    <hr>
+    <p><strong>Nama:</strong> {{ $nama }}</p>
+    <p><strong>Email:</strong> {{ $email }}</p>
+    <p><strong>Pertanyaan:</strong> {{ $pertanyaan }}</p>
+</div>
 
     <div class="thankyou-container">
         <h2>Terima Kasih, BUDI! 🎉</h2>
