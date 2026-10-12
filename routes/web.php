@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
@@ -33,3 +35,10 @@ Route::get('/home' ,[HomeController::class, 'index']);
 
 Route::post('question/store', [QuestionController::class, 'store'])
 		->name('question.store');
+
+// Route untuk menampilkan halaman respon (GET)
+Route::get('/home-question-respon', function () {
+    return view('home-question-respon');
+})->name('home-question-respon');
+
+Route::ger('dashboard', [DashboardController::class, 'index']) ->name('dashboard');

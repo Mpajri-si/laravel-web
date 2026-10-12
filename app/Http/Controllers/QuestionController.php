@@ -43,7 +43,9 @@ class QuestionController extends Controller
         $data['email']      = $request->email;
         $data['pertanyaan'] = $request->pertanyaan;
 
-        return view('home-question-respon', $data);
+        return redirect()->route('home-question-respon')->with('info', 'Selamat, Kamu Lulus!', $data);
+
+
     }
 
     public function show($id)
@@ -65,4 +67,17 @@ class QuestionController extends Controller
     {
         //
     }
+
+    public function respon()
+{
+    // Mengambil data dari session flash yang dikirim dari redirect
+    $data = session('data');
+
+    // Jika diakses langsung tanpa submit form, bisa diredirect kembali ke form/home
+    if (!$data) {
+        return redirect('/home');
+    }
+
+    return view('home-question-respon', $data);
+}
 }
