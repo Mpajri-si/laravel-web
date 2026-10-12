@@ -41,4 +41,4 @@ Route::get('/home-question-respon', function () {
     return view('home-question-respon');
 })->name('home-question-respon');
 
-Route::ger('dashboard', [DashboardController::class, 'index']) ->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index']) ->name('dashboard');
