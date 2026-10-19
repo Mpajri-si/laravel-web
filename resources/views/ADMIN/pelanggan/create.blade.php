@@ -303,11 +303,15 @@
                             @csrf
                             <div class="row mb-4">
                                 <div class="col-lg-4 col-sm-6">
+
                                     <!-- First Name -->
                                     <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" class="form-control" name ="first name" required>
-                                    </div>
+                                <label for="first_name" class="form-label">First name</label>
+                                <input type="text" id="first_name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}">
+                                @error('first_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                                     <!-- Last Name -->
                                     <div class="mb-3">
@@ -325,14 +329,15 @@
 
                                     <!-- Gender -->
                                     <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name ="gender">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select id="gender" name="gender" class="form-select @error('gender') is-invalid @enderror">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                    </select>
+                                    @error('gender')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-4 col-sm-12">

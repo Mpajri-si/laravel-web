@@ -207,9 +207,13 @@
                             <!-- Kolom Kiri -->
                             <div class="col-lg-4 col-sm-6">
                                 <div class="mb-3">
-                                    <label for="first_name" class="form-label">First name</label>
-                                    <input type="text" id="first_name" class="form-control" name="first_name" value="{{ $dataPelanggan->first_name }}" required>
-                                </div>
+                                <label for="first_name" class="form-label">First name</label>
+                                <input type="text" id="first_name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name', $dataPelanggan->first_name) }}">
+                                @error('first_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                                 <div class="mb-3">
                                     <label for="last_name" class="form-label">Last name</label>
                                     <input type="text" id="last_name" class="form-control" name="last_name" value="{{ $dataPelanggan->last_name }}" required>
@@ -223,14 +227,17 @@
                                     <input type="date" id="birthday" class="form-control" name="birthday" value="{{ $dataPelanggan->birthday }}">
                                 </div>
                                 <div class="mb-3">
+                                    <div class="mb-3">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select id="gender" name="gender" class="form-select">
+                                    <select id="gender" name="gender" class="form-select @error('gender') is-invalid @enderror">
                                         <option value="">-- Pilih --</option>
-                                        <option value="Female" {{ $dataPelanggan->gender == 'Female' ? 'selected' : '' }}>Female</option>
-                                        <option value="Male" {{ $dataPelanggan->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Male" {{ old('gender', $dataPelanggan->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ old('gender', $dataPelanggan->gender) == 'Female' ? 'selected' : '' }}>Female</option>
                                     </select>
+                                    @error('gender')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            </div>
 
                             <!-- Kolom Kanan -->
                             <div class="col-lg-4 col-sm-12">

@@ -30,17 +30,19 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $data['first_name'] = $request->first_name;
-		$data['last_name'] = $request->last_name;
-		$data['birthday'] = $request->birthday;
-		$data['gender'] = $request->gender;
-		$data['email'] = $request->email;
-		$data['phone'] = $request->phone;
+       $request->validate([
+        'first_name' => 'required',
+        'last_name'  => 'required',
+        'birthday'   => 'required|date',
+        'gender'     => 'required|in:Male,Female',
+        'email'      => 'required|email',
+        'phone'      => 'required|numeric',
+    ]);
 
-		Pelanggan::create($data);
+    // Simpan Data
+    Pelanggan::create($request->all());
 
-		return redirect()->route('pelanggan.index')->with('success','Penambahan Data Berhasil!');
+    return redirect()->route('pelanggan.index')->with('success', 'Data Pelanggan Berhasil Ditambahkan!');
 
     }
 
@@ -66,19 +68,20 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $pelanggan_id = $id;
-        $pelanggan = Pelanggan::findOrFail($pelanggan_id);
+      // Aturan Validasi
+    $request->validate([
+        'first_name' => 'required',
+        'last_name'  => 'required',
+        'birthday'   => 'required|date',
+        'gender'     => 'required|in:Male,Female',
+        'email'      => 'required|email',
+        'phone'      => 'required|numeric',
+    ]);
 
-        $pelanggan->first_name = $request->first_name;
-        $pelanggan->last_name  = $request->last_name;
-        $pelanggan->birthday   = $request->birthday;
-        $pelanggan->gender     = $request->gender;
-        $pelanggan->email      = $request->email;
-        $pelanggan->phone      = $request->phone;
+    $pelanggan = Pelanggan::findOrFail($id);
+    $pelanggan->update($request->all());
 
-        $pelanggan->save();
-
-        return redirect()->route('pelanggan.index')->with('success', 'Perubahan Data Berhasil!');
+    return redirect()->route('pelanggan.index')->with('success', 'Perubahan Data Berhasil!');
     }
 
     /**
