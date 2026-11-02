@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\PelangganController;
-
+use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -45,3 +45,4 @@ Route::get('/home-question-respon', function () {
 Route::get('dashboard', [DashboardController::class, 'index']) ->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class);
+Route::resource('user', UserController::class);
