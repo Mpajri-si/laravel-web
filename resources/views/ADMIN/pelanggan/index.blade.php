@@ -1,8 +1,5 @@
 @extends('layout.admin.app')
 
-
-
-
 @section('content')
         {{-- Start main content --}}
         <div class="py-4">
@@ -29,8 +26,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         <div class="row">
@@ -112,3 +107,4 @@
         </div>
         {{-- end main content --}}
 @endsection
+
